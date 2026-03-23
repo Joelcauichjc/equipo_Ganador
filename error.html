@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinemex | Error en el Sistema</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: radial-gradient(circle, #001d4a 0%, #000000 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: #cf0000;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-placeholder {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .error-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 50px 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+        }
+
+        .error-icon {
+            font-size: 60px;
+            color: #cf0000;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #cf0000;
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* Botón ahora es un enlace a pag.html */
+        .back-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #cf0000;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            padding: 20px;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    </nav>
+
+    <div class="container">
+        <div class="error-card">
+            <div class="error-icon">⚠️</div>
+            <h2>Algo salió mal</h2>
+            <p>
+                Lo sentimos, hubo un error temporal al procesar tu solicitud para la promoción de <strong>Mario Galaxy</strong>.
+                <br><br>
+                Es posible que la sesión haya expirado o que los servidores estén saturados. Por favor, vuelve a intentarlo.
+            </p>
+            <!-- Redirige de vuelta a pag.html -->
+            <a href="pag.html" class="back-button">VOLVER A INTENTAR</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Cinemex® | Ejercicio de Concientización de Seguridad</p>
+    </footer>
+</body>
+</html>

