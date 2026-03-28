@@ -11,7 +11,6 @@
             --primary-glow: rgba(230, 36, 36, 0.6);
             --accent: #ffcc00;
             --dark-bg: #05070a;
-            --glass: rgba(255, 255, 255, 0.07);
             --glass-border: rgba(255, 255, 255, 0.15);
         }
 
@@ -20,7 +19,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             background: 
-                linear-gradient(rgba(5, 7, 10, 0.5), rgba(5, 7, 10, 0.5)),
+                linear-gradient(rgba(5, 7, 10, 0.6), rgba(5, 7, 10, 0.6)),
                 url('https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&q=80&w=2000');
             background-size: cover;
             background-position: center;
@@ -29,10 +28,9 @@
             min-height: 100vh;
         }
 
-        /* Navbar */
         nav {
             padding: 1rem 8%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(15px);
             display: flex;
             justify-content: space-between;
@@ -40,57 +38,22 @@
             border-bottom: 1px solid var(--glass-border);
         }
 
-        .logo { font-size: 1.5rem; font-weight: 900; }
+        .logo { font-size: 1.6rem; font-weight: 900; }
         .logo span { color: var(--primary); }
 
-        .top-banner {
-            background: var(--accent);
-            color: #000;
-            text-align: center;
-            padding: 8px;
-            font-size: 0.85rem;
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-
-        /* Layout */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 3rem 2rem;
             display: grid;
-            grid-template-columns: 1fr 450px;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        /* TIMER ARRIBA (Nuevo Estilo) */
-        .countdown-wrapper {
-            grid-column: 1 / -1; /* Ocupa todo el ancho arriba */
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: 1fr 420px;
+            gap: 4rem;
             align-items: center;
-            margin-bottom: 1rem;
         }
 
-        .countdown-container {
-            display: flex;
-            gap: 15px;
-            background: rgba(230, 36, 36, 0.1);
-            padding: 15px 30px;
-            border-radius: 50px;
-            border: 1px solid var(--primary-glow);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px var(--primary-glow);
-        }
-
-        .time-box { text-align: center; min-width: 60px; }
-        .time-box span { display: block; font-size: 1.5rem; font-weight: 900; color: var(--accent); line-height: 1; }
-        .time-box label { font-size: 0.6rem; text-transform: uppercase; opacity: 0.7; font-weight: 700; }
-
-        /* Contenido Izquierdo */
-        .hero-info h1 {
-            font-size: 3rem;
+        /* --- COLUMNA IZQUIERDA --- */
+        .hero-content h1 {
+            font-size: 3.5rem;
             line-height: 1;
             margin-bottom: 1rem;
             text-transform: uppercase;
@@ -98,51 +61,81 @@
 
         .promo-img {
             width: 100%;
-            max-width: 400px; /* Tamaño controlado */
-            max-height: 500px;
-            object-fit: contain;
-            border-radius: 15px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
-            transition: 0.3s;
+            max-width: 380px;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            margin-top: 1.5rem;
         }
 
-        /* Formulario Glassmorphism */
+        /* --- COLUMNA DERECHA (FORMULARIO + TIMER) --- */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Timer justo arriba del formulario */
+        .timer-card {
+            background: rgba(230, 36, 36, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary);
+            border-radius: 15px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .time-item { text-align: center; }
+        .time-item span { display: block; font-size: 1.6rem; font-weight: 900; color: var(--accent); line-height: 1; }
+        .time-item label { font-size: 0.6rem; text-transform: uppercase; font-weight: 700; opacity: 0.8; }
+
+        /* Tarjeta del Formulario */
         .form-card {
-            background: rgba(15, 20, 30, 0.7);
-            backdrop-filter: blur(20px);
+            background: rgba(15, 20, 35, 0.85);
+            backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
             border-radius: 25px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            padding: 2.2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
         }
 
-        .spots-left {
-            margin: 1rem 0;
-            background: rgba(255,255,255,0.1);
+        .form-card h2 { font-size: 1.4rem; text-align: center; letter-spacing: 1px; }
+
+        .progress-section { margin: 1.2rem 0; }
+        .progress-text { display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: 900; color: var(--accent); margin-bottom: 5px; }
+        
+        .progress-bar {
             height: 8px;
+            background: rgba(255,255,255,0.1);
             border-radius: 10px;
             overflow: hidden;
         }
         .progress-fill {
-            background: var(--primary);
             height: 100%;
-            width: 80%;
-            transition: width 1s;
+            width: 85%;
+            background: var(--primary);
             box-shadow: 0 0 10px var(--primary);
+            transition: width 1s;
         }
 
-        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .full-width { grid-column: span 2; }
+        /* Inputs */
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+        .full { grid-column: span 2; }
 
         input {
             width: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0,0,0,0.4);
             border: 1px solid var(--glass-border);
-            padding: 12px;
+            padding: 11px;
             border-radius: 10px;
             color: white;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            transition: 0.3s;
         }
+
+        input:focus { border-color: var(--primary); outline: none; }
 
         .cta-button {
             width: 100%;
@@ -155,78 +148,80 @@
             font-weight: 900;
             text-transform: uppercase;
             cursor: pointer;
-            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(230, 36, 36, 0.3);
         }
 
-        .cta-button:hover { transform: scale(1.02); filter: brightness(1.2); }
+        .cta-button:hover { filter: brightness(1.2); transform: translateY(-2px); }
 
         @media (max-width: 900px) {
-            .container { grid-template-columns: 1fr; }
-            .promo-img { max-width: 100%; height: auto; }
+            .container { grid-template-columns: 1fr; text-align: center; }
+            .promo-img { max-width: 300px; margin: 1.5rem auto; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-banner">⚠️ PROMOCIÓN LIMITADA: QUEDAN POCOS ACCESOS ⚠️</div>
-
     <nav>
         <div class="logo">CINE<span>MEX</span></div>
-        <div style="font-size: 0.7rem; opacity: 0.6;">SOPORTE OFICIAL</div>
+        <div style="font-size: 0.7rem; font-weight: 700; opacity: 0.6;">SOPORTE OFICIAL</div>
     </nav>
 
     <main class="container">
-        <div class="countdown-wrapper">
-            <p style="font-size: 0.7rem; font-weight: bold; margin-bottom: 8px; color: var(--accent); letter-spacing: 2px;">LA OFERTA TERMINA EN:</p>
-            <div class="countdown-container">
-                <div class="time-box"><span id="horas">00</span><label>Horas</label></div>
-                <div class="time-box"><span id="minutos">15</span><label>Min</label></div>
-                <div class="time-box"><span id="segundos">00</span><label>Seg</label></div>
-            </div>
-        </div>
-
-        <section class="hero-info">
+        
+        <section class="hero-content">
             <h1>The Super Mario <br><span style="color:var(--accent)">Galaxy</span> Movie</h1>
-            <p style="opacity: 0.8; margin-bottom: 1.5rem; font-size: 0.9rem;">Regístrate para la preventa exclusiva y gana un Luma Kit Edición Especial.</p>
-            <img src="mario.png" alt="Promo" class="promo-img">
+            <p style="opacity: 0.9; max-width: 450px;">Regístrate para la preventa exclusiva y gana un Luma Kit Edición Especial.</p>
+            <img src="mario.png" alt="Poster" class="promo-img">
         </section>
 
-        <section class="form-card">
-            <h2 style="text-align:center; font-size: 1.5rem;">RECLAMA TU KIT</h2>
-            <div style="display:flex; justify-content:space-between; font-size: 0.65rem; font-weight:900; margin-top: 1rem;">
-                <span>DISPONIBILIDAD</span>
-                <span style="color: var(--accent)" id="txt-lugares">8 LUGARES</span>
-            </div>
-            <div class="spots-left">
-                <div class="progress-fill" id="barra-progreso"></div>
-            </div>
-
-            <div class="input-grid">
-                <div class="input-group full-width"><input type="text" id="nombre" placeholder="Nombre Completo"></div>
-                <div class="input-group"><input type="email" id="correo" placeholder="Email"></div>
-                <div class="input-group"><input type="tel" id="telefono" placeholder="Teléfono"></div>
-                <div class="input-group"><input type="date" id="fecha"></div>
-                <div class="input-group"><input type="text" id="trabajo" placeholder="Ciudad"></div>
-                <div class="input-group full-width"><input type="text" id="direccion" placeholder="Dirección de Envío"></div>
+        <section class="form-container">
+            
+            <div class="timer-card">
+                <div style="font-size: 0.6rem; font-weight: 900; letter-spacing: 1px;">OFERTA<br>EXPIRA:</div>
+                <div class="time-item"><span id="horas">00</span><label>Horas</label></div>
+                <div class="time-item"><span id="minutos">15</span><label>Min</label></div>
+                <div class="time-item"><span id="segundos">00</span><label>Seg</label></div>
             </div>
 
-            <button class="cta-button" onclick="enviarDatos()">RECLAMAR PREMIO AHORA</button>
+            <div class="form-card">
+                <h2>RECLAMA TU KIT</h2>
+                
+                <div class="progress-section">
+                    <div class="progress-text">
+                        <span>ESTADO: CASI AGOTADO</span>
+                        <span id="txt-lugares">8 LUGARES</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="barra-progreso"></div>
+                    </div>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group full"><input type="text" id="nombre" placeholder="Nombre Completo"></div>
+                    <div class="input-group"><input type="email" id="correo" placeholder="Email"></div>
+                    <div class="input-group"><input type="tel" id="telefono" placeholder="WhatsApp"></div>
+                    <div class="input-group"><input type="date" id="fecha"></div>
+                    <div class="input-group"><input type="text" id="trabajo" placeholder="Ciudad"></div>
+                    <div class="input-group full"><input type="text" id="direccion" placeholder="Dirección de Envío"></div>
+                </div>
+
+                <button class="cta-button" onclick="enviarDatos()">RECLAMAR PREMIO</button>
+            </div>
         </section>
+
     </main>
 
     <script>
-        // Contador
+        // Timer
         let tiempoTotal = 15 * 60;
         function actualizarContador() {
-            let h = Math.floor(tiempoTotal / 3600);
-            let m = Math.floor((tiempoTotal % 3600) / 60);
+            let m = Math.floor(tiempoTotal / 60);
             let s = tiempoTotal % 60;
-            document.getElementById('horas').innerText = h.toString().padStart(2, '0');
             document.getElementById('minutos').innerText = m.toString().padStart(2, '0');
             document.getElementById('segundos').innerText = s.toString().padStart(2, '0');
             if (tiempoTotal > 0) {
                 tiempoTotal--;
-                if (tiempoTotal % 40 === 0) {
+                if (tiempoTotal % 45 === 0) {
                     let lugares = Math.floor(Math.random() * 2) + 2;
                     document.getElementById('txt-lugares').innerText = `${lugares} LUGARES`;
                     document.getElementById('barra-progreso').style.width = (lugares * 12) + "%";
@@ -235,10 +230,9 @@
         }
         setInterval(actualizarContador, 1000);
 
-        // Envío
         function enviarDatos() {
             const btn = document.querySelector('.cta-button');
-            btn.innerText = "PROCESANDO...";
+            btn.innerText = "REGISTRANDO...";
             btn.disabled = true;
             setTimeout(() => { window.location.href = 'error.html'; }, 1500);
         }
