@@ -80,13 +80,16 @@
         }
 
         .promo-img {
-            width: 100%;
-            max-width: 500px;
+            width: auto;             /* Deja que el ancho sea proporcional */
+            max-width: 100%;        /* No permite que se desborde */
+            max-height: 450px;      /* LIMITA LA ALTURA para que quepa bien */
+            object-fit: contain;    /* Asegura que no se deforme */
             border-radius: 20px;
-            /* Efecto de "aura" espacial */
             box-shadow: 0 0 60px -10px var(--primary-glow);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+            display: block;
+            margin: 0 auto;         /* Centra la imagen en su columna */
         }
         .promo-img:hover { transform: scale(1.05) rotate(1deg); }
 
