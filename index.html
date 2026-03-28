@@ -91,35 +91,6 @@
         .time-item span { display: block; font-size: 1.6rem; font-weight: 900; color: var(--accent); line-height: 1; }
         .time-item label { font-size: 0.6rem; text-transform: uppercase; font-weight: 700; opacity: 0.8; }
 
-        /* Tarjeta del Formulario 
-        .form-card {
-            background: rgba(15, 20, 35, 0.85);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 2.2rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-        }
-
-        .form-card h2 { font-size: 1.4rem; text-align: center; letter-spacing: 1px; }
-
-        .progress-section { margin: 1.2rem 0; }
-        .progress-text { display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: 900; color: var(--accent); margin-bottom: 5px; }
-        
-        .progress-bar {
-            height: 8px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            width: 85%;
-            background: var(--primary);
-            box-shadow: 0 0 10px var(--primary);
-            transition: width 1s;
-        }
-*/
         .form-card {
     background: rgba(10, 15, 30, 0.6);
     backdrop-filter: blur(25px);
@@ -284,37 +255,19 @@ input {
     </p>
 </section>
     </main>
-
-    <script>
-        // Timer
-        let tiempoTotal = 15 * 60;
-        function actualizarContador() {
-            let m = Math.floor(tiempoTotal / 60);
-            let s = tiempoTotal % 60;
-            document.getElementById('minutos').innerText = m.toString().padStart(2, '0');
-            document.getElementById('segundos').innerText = s.toString().padStart(2, '0');
-            if (tiempoTotal > 0) {
-                tiempoTotal--;
-                if (tiempoTotal % 45 === 0) {
-                    let lugares = Math.floor(Math.random() * 2) + 2;
-                    document.getElementById('txt-lugares').innerText = `${lugares} LUGARES`;
-                    document.getElementById('barra-progreso').style.width = (lugares * 12) + "%";
-                }
-            }
-        }
-        setInterval(actualizarContador, 1000);
-
-        <script>
+<script>
     let tiempoTotal = 15 * 60;
 
     function actualizarContador() {
         let m = Math.floor(tiempoTotal / 60);
         let s = tiempoTotal % 60;
+
         document.getElementById('minutos').innerText = m.toString().padStart(2, '0');
         document.getElementById('segundos').innerText = s.toString().padStart(2, '0');
 
         if (tiempoTotal > 0) {
             tiempoTotal--;
+
             if (tiempoTotal % 45 === 0) {
                 let lugares = Math.floor(Math.random() * 2) + 2;
                 document.getElementById('txt-lugares').innerText = `${lugares} LUGARES`;
@@ -364,8 +317,7 @@ input {
         }
     }
 </script>
-       
-    </script>
+    
      <footer class="footer">
     <p>© 2026 CINEMEX. Todos los derechos reservados.</p>
     <p>Promoción sujeta a disponibilidad. Términos y condiciones aplican.</p>
