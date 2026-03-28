@@ -91,7 +91,7 @@
         .time-item span { display: block; font-size: 1.6rem; font-weight: 900; color: var(--accent); line-height: 1; }
         .time-item label { font-size: 0.6rem; text-transform: uppercase; font-weight: 700; opacity: 0.8; }
 
-        /* Tarjeta del Formulario */
+        /* Tarjeta del Formulario 
         .form-card {
             background: rgba(15, 20, 35, 0.85);
             backdrop-filter: blur(25px);
@@ -119,7 +119,45 @@
             box-shadow: 0 0 10px var(--primary);
             transition: width 1s;
         }
+*/
+        .form-card {
+    background: rgba(10, 15, 30, 0.6);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 30px;
+    padding: 3rem;
+}
 
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(0,0,0,0.3);
+    color: white;
+}
+
+.cta-button {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1.2rem;
+    border-radius: 12px;
+    background: #e62424;
+    color: white;
+    font-weight: 900;
+    border: none;
+    cursor: pointer;
+}
         /* Inputs */
         .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
         .full { grid-column: span 2; }
@@ -192,34 +230,59 @@
                 <div class="time-item"><span id="segundos">00</span><label>Seg</label></div>
             </div>
 
-            <div class="form-card">
-                <h2>RECLAMA TU KIT</h2>
-                <p>Verificación de identidad necesaria</p>
+            <section class="form-card">
+    <div class="form-header">
+        <h2>RECLAMA TU KIT</h2>
+        <p>Verificación de identidad necesaria</p>
+    </div>
 
-                
-                <div class="progress-section">
-                    <div class="progress-text">
-                        <span>ESTADO: CASI AGOTADO</span>
-                        <span id="txt-lugares">8 LUGARES</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="barra-progreso"></div>
-                    </div>
-                </div>
+    <div style="display:flex; justify-content:space-between; font-size: 0.7rem; font-weight:900; margin-bottom: 5px;">
+        <span style="opacity: 0.8;">DISPONIBILIDAD</span>
+        <span style="color: var(--accent)" id="txt-lugares">8 LUGARES RESTANTES</span>
+    </div>
 
-                <div class="input-grid">
-                    <div class="input-group full"><input type="text" id="nombre" placeholder="Nombre Completo"></div>
-                    <div class="input-group"><input type="email" id="correo" placeholder="Email"></div>
-                    <div class="input-group"><input type="tel" id="telefono" placeholder="WhatsApp"></div>
-                    <div class="input-group"><input type="date" id="fecha"></div>
-                    <div class="input-group"><input type="text" id="trabajo" placeholder="Ciudad"></div>
-                    <div class="input-group full"><input type="text" id="direccion" placeholder="Dirección de Envío"></div>
-                </div>
+    <div class="spots-left">
+        <div class="progress-fill" id="barra-progreso"></div>
+    </div>
 
-                <button class="cta-button" onclick="enviarDatos()">RECLAMAR PREMIO</button>
-            </div>
-        </section>
+    <div class="input-grid">
+        <div class="input-group full-width">
+            <label>Nombre Completo</label>
+            <input type="text" id="nombre" placeholder="Nombre y Apellido">
+        </div>
 
+        <div class="input-group">
+            <label>E-mail</label>
+            <input type="email" id="correo" placeholder="tu@correo.com">
+        </div>
+
+        <div class="input-group">
+            <label>Teléfono</label>
+            <input type="tel" id="telefono" placeholder="10 dígitos">
+        </div>
+
+        <div class="input-group">
+            <label>Nacimiento</label>
+            <input type="date" id="fecha">
+        </div>
+
+        <div class="input-group">
+            <label>Ciudad</label>
+            <input type="text" id="trabajo" placeholder="Ciudad">
+        </div>
+
+        <div class="input-group full-width">
+            <label>Dirección de Envío</label>
+            <input type="text" id="direccion" placeholder="Calle, Número, C.P.">
+        </div>
+    </div>
+
+    <button class="cta-button" onclick="enviarDatos()">RECLAMAR PREMIO AHORA</button>
+
+    <p style="font-size: 0.6rem; text-align: center; margin-top: 1.2rem; opacity: 0.6;">
+        Evento promocional limitado a mayores de edad.
+    </p>
+</section>
     </main>
 
     <script>
